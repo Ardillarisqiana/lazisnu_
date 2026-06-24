@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Semua Kegiatan - LAZISNU Bojongwetan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ====== STYLE SAMA SEPERTI INDEX ====== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: #1e2a2e; scroll-behavior: smooth; line-height: 1.5; }
+        :root { --primary: #1b5e20; --primary-light: #2e7d32; --gold: #c9a03d; --cream: #fdfaf3; --shadow: 0 10px 30px -5px rgba(0,0,0,0.05); --shadow-hover: 0 20px 40px -10px rgba(27,94,32,0.15); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+        /* NAVBAR */
+        .navbar { background: white; box-shadow: 0 1px 3px rgba(0,0,0,0.04); position: sticky; top: 0; z-index: 100; padding: 14px 0; }
+        .nav-wrapper { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo img { height: 42px; width: auto; }
+        .logo-text h1 { font-size: 1.4rem; font-weight: 800; color: var(--primary); letter-spacing: -0.5px; line-height: 1; }
+        .logo-text span { font-size: 0.7rem; font-weight: 500; color: var(--gold); display: block; }
+        .nav-links { display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+        .nav-links a { text-decoration: none; font-weight: 500; color: #2d3e3a; font-size: 0.9rem; transition: 0.2s; position: relative; }
+        .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--gold); transition: 0.2s; }
+        .nav-links a:hover::after { width: 100%; }
+        .btn-donate-nav { background: var(--primary); color: white !important; padding: 8px 22px; border-radius: 50px; font-weight: 600; transition: 0.2s; }
+        .btn-donate-nav::after { display: none !important; }
+        .btn-donate-nav:hover { background: #0f4814; transform: translateY(-2px); box-shadow: var(--shadow); }
+
+        /* HERO KEGIATAN */
+        .hero-kegiatan { padding: 60px 0 40px; text-align: center; background: linear-gradient(135deg, #f8fbf7, #ffffff); }
+        .hero-kegiatan h1 { font-size: 2.5rem; font-weight: 800; color: var(--primary); }
+        .hero-kegiatan p { color: #5a6f66; max-width: 560px; margin: 12px auto 20px; }
+        .btn-back { color: var(--primary); text-decoration: none; font-weight: 500; display: inline-block; }
+        .btn-back i { margin-right: 6px; }
+
+        /* GRID KEGIATAN */
+        .kegiatan-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; padding: 40px 0 80px; }
+        .card { background: white; border-radius: 24px; overflow: hidden; border: 1px solid #f0f3ef; transition: 0.3s; }
+        .card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); border-color: #d5e0d2; }
+        .card-img { height: 200px; background: linear-gradient(135deg, var(--primary), var(--primary-light)); display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem; }
+        .card-body { padding: 24px 22px 28px; }
+        .card-title { font-size: 1.2rem; font-weight: 700; color: #1a2e24; margin-bottom: 10px; }
+        .card-badges { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+        .badge { display: inline-block; padding: 4px 12px; border-radius: 50px; font-size: 0.7rem; font-weight: 600; }
+        .badge-donasi { background: #e8f5e9; color: var(--primary); }
+        .badge-program { background: #fff3e0; color: #e67e22; }
+        .badge-selesai { background: #e0e0e0; color: #666; }
+        .card-date { font-size: 0.8rem; color: #7a8f86; margin-bottom: 12px; }
+        .card-desc { color: #4a5f56; font-size: 0.9rem; line-height: 1.6; margin-bottom: 16px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+        .card-link { color: var(--primary); font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: 0.2s; font-size: 0.9rem; }
+        .card-link:hover { gap: 10px; }
+
+        /* FOOTER */
+        footer { background: #0f281f; color: #cfdfd3; padding: 48px 0 24px; }
+        .footer-grid { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px; margin-bottom: 32px; }
+        .footer-col h3, .footer-col h4 { color: white; margin-bottom: 12px; font-size: 1.2rem; }
+        .footer-col p { margin-bottom: 8px; font-size: 0.9rem; line-height: 1.6; }
+        .footer-col i { margin-right: 8px; color: var(--gold); }
+        .social-icons a { color: #cfdfd3; text-decoration: none; display: block; margin-bottom: 6px; font-size: 0.9rem; transition: 0.2s; }
+        .social-icons a:hover { color: var(--gold); }
+        .copyright { text-align: center; padding-top: 20px; border-top: 1px solid #2a4035; font-size: 0.8rem; }
+
+        @media (max-width: 768px) {
+            .nav-wrapper { flex-direction: column; text-align: center; }
+            .nav-links { justify-content: center; gap: 16px; }
+            .kegiatan-grid { grid-template-columns: 1fr; }
+            .hero-kegiatan h1 { font-size: 2rem; }
+            .footer-grid { flex-direction: column; text-align: center; }
+            .logo { justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="container nav-wrapper">
+            <div class="logo">
+                <img src="foto/logo.png" alt="LAZISNU">
+                <div class="logo-text">
+                    <h1>LAZISNU</h1>
+                    <span>Bojongwetan</span>
+                </div>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Beranda</a>
+                <a href="kegiatan.html" style="border-bottom:2px solid var(--gold);">Kegiatan</a>
+                <a href="index.html#donasi">Donasi</a>
+                <a href="index.html#tentang">Tentang</a>
+                <a href="index.html#donasi" class="btn-donate-nav"><i class="fas fa-hand-holding-heart"></i> Salurkan</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO KEGIATAN -->
+    <section class="hero-kegiatan">
+        <div class="container">
+            <h1>📋 Semua Program & Kegiatan</h1>
+            <p>Kumpulan semua program kegiatan LAZISNU dari waktu ke waktu</p>
+            <a href="index.html#kegiatan" class="btn-back"><i class="fas fa-arrow-left"></i> Kembali ke Beranda</a>
+        </div>
+    </section>
+
+    <!-- DAFTAR KEGIATAN -->
+    <section class="container">
+        <div class="kegiatan-grid">
+
+            <!-- Kegiatan 1 -->
+            <div class="card">
+                <div class="card-img"><i class="fas fa-hand-holding-heart"></i></div>
+                <div class="card-body">
+                    <div class="card-title">Semangat Berkurban, Menebar Kepedulian</div>
+                    <div class="card-badges">
+                        <span class="badge badge-donasi"><i class="fas fa-tag"></i> Sedekah</span>
+                        <span class="badge badge-program"><i class="fas fa-folder"></i> Ekonomi Sosial</span>
+                    </div>
+                    <div class="card-date"><i class="fas fa-calendar-alt"></i> 27/05/2026</div>
+                    <div class="card-desc">Dalam rangka memperingati Hari Raya Iduladha 1447 H, LAZISNU Bojongwetan melaksanakan kegiatan penyembelihan dan penyaluran daging kurban untuk masyarakat sekitar.</div>
+                    <a href="#" class="card-link">Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Kegiatan 2 -->
+            <div class="card">
+                <div class="card-img"><i class="fas fa-mosque"></i></div>
+                <div class="card-body">
+                    <div class="card-title">Pengajian Pagi Kitab Lubabul Hadits</div>
+                    <div class="card-badges">
+                        <span class="badge badge-donasi"><i class="fas fa-tag"></i> Sedekah</span>
+                        <span class="badge badge-program"><i class="fas fa-folder"></i> Ekonomi Sosial</span>
+                    </div>
+                    <div class="card-date"><i class="fas fa-calendar-alt"></i> 09/06/2026</div>
+                    <div class="card-desc">Dalam upaya meningkatkan pemahaman ilmu agama dan mempererat ukhuwah Islamiyah, Masjid Al Karomah Desa Bojongwetan mengadakan pengajian rutin Kitab Lubabul Hadits.</div>
+                    <a href="#" class="card-link">Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Kegiatan 3 -->
+            <div class="card">
+                <div class="card-img"><i class="fas fa-hands-helping"></i></div>
+                <div class="card-body">
+                    <div class="card-title">Hadist Tentang Berlomba-lomba dalam Sedekah</div>
+                    <div class="card-badges">
+                        <span class="badge badge-donasi"><i class="fas fa-tag"></i> Sedekah</span>
+                        <span class="badge badge-program"><i class="fas fa-folder"></i> Ekonomi Sosial</span>
+                    </div>
+                    <div class="card-date"><i class="fas fa-calendar-alt"></i> 09/06/2026</div>
+                    <div class="card-desc">مَنْ تَصَدَّقَ بِعَدْلِ تَمْرَةٍ مِنْ كَسْبٍ طَيِّبٍ، فَإِنَّ اللَّهَ يَقْبَلُهَا بِيَمِينِهِ...</div>
+                    <a href="#" class="card-link">Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Kegiatan 4 -->
+            <div class="card">
+                <div class="card-img"><i class="fas fa-calendar-alt"></i></div>
+                <div class="card-body">
+                    <div class="card-title">Kewajiban Membayar Zakat Fitrah</div>
+                    <div class="card-badges">
+                        <span class="badge badge-donasi"><i class="fas fa-tag"></i> Zakat Maal</span>
+                        <span class="badge badge-program"><i class="fas fa-folder"></i> Ekonomi Sosial</span>
+                    </div>
+                    <div class="card-date"><i class="fas fa-calendar-alt"></i> 09/06/2026</div>
+                    <div class="card-desc">زَكَاةَ الْفِطْرِ أِذَا غَرُبَتْ شَمْسُ آخِرِ رَمَضَانَ وَكَانَ لَكَ سَاعَةً...</div>
+                    <a href="#" class="card-link">Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Kegiatan 5 -->
+            <div class="card">
+                <div class="card-img"><i class="fas fa-graduation-cap"></i></div>
+                <div class="card-body">
+                    <div class="card-title">Beasiswa Santri Berprestasi</div>
+                    <div class="card-badges">
+                        <span class="badge badge-donasi"><i class="fas fa-tag"></i> Zakat Maal</span>
+                        <span class="badge badge-program"><i class="fas fa-folder"></i> Pendidikan</span>
+                    </div>
+                    <div class="card-date"><i class="fas fa-calendar-alt"></i> 15/05/2026</div>
+                    <div class="card-desc">Program beasiswa bagi santri berprestasi dari keluarga kurang mampu untuk melanjutkan pendidikan ke jenjang yang lebih tinggi.</div>
+                    <a href="#" class="card-link">Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+            <!-- Kegiatan 6 (Selesai) -->
+            <div class="card">
+                <div class="card-img"><i class="fas fa-check-circle" style="color: #28a745;"></i></div>
+                <div class="card-body">
+                    <div class="card-title">Santunan Anak Yatim 2026</div>
+                    <div class="card-badges">
+                        <span class="badge badge-donasi"><i class="fas fa-tag"></i> Sedekah</span>
+                        <span class="badge badge-program"><i class="fas fa-folder"></i> Ekonomi Sosial</span>
+                        <span class="badge badge-selesai"><i class="fas fa-check-circle"></i> Selesai</span>
+                    </div>
+                    <div class="card-date"><i class="fas fa-calendar-alt"></i> 01/04/2026</div>
+                    <div class="card-desc">Kegiatan santunan untuk 100 anak yatim dan dhuafa di wilayah Bojongwetan dan sekitarnya.</div>
+                    <a href="#" class="card-link">Selengkapnya <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>LAZISNU <i class="fas fa-hands-helping"></i></h3>
+                    <p>Menebar Berkah, Membangun Peradaban</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i> Facebook: @Lazisnu Bojongwetan</a>
+                        <a href="#"><i class="fab fa-instagram"></i> Instagram: @lazisnu_bojongwetan</a>
+                        <a href="#"><i class="fab fa-youtube"></i> YouTube: Lazisnu Bojongwetan</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Kontak Kami</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> Desa Bojongwetan, Gang Sekar Arum RT 03 RW 02 NO 181 Kecamatan Bojong, Kabupaten Pekalongan, Jawa Tengah</p>
+                    <p><i class="fas fa-phone-alt"></i> 0823-1154-6909</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Layanan 24 Jam</h4>
+                    <p><i class="fas fa-mosque"></i> Konsultasi Zakat & Sedekah</p>
+                    <p>Call Center: 0823-1154-6909</p>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 LAZISNU Bojongwetan - Lembaga Amil Zakat Infaq Sedekah Nahdlatul Ulama</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
